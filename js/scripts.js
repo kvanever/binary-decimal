@@ -4,15 +4,14 @@
 $(function () {
   $("form").submit(function(event) {
     event.preventDefault();
-    debugger;
     var input = ($("input#binary-input").val());
-    // if (!isBinary(input) === true) {
-    //   alert("Please enter a positive binary integer");
-    //   $("input").addClass("has-error");
-    // }
-    // else {
+    if (!isBinary(input) === true) {
+      alert("Please enter a positive binary integer");
+      $("input").addClass("has-error");
+    }
+    else {
       var output = binaryToDecimal(input);
-    // }
+    }
     $(".output").text(output);
   })
 })
@@ -20,11 +19,10 @@ $(function () {
 //business logic
 
 var isBinary = function(integer) {
-  return (/^[-e23456789]$/i).test(integer);
+  return (/^[0-1]*$/gm).test(integer);
 }
 
 var binaryToDecimal = function(integer) {
-  debugger;
   var array = integer.split('');
   var decimal = 0;
   var reverseArray = array.reverse();
